@@ -1,0 +1,57 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20150618212008
+**********************
+Transcript started, output file is .\xDefender\test_transcript_verbose.txt
+PS C:\github> Test-xDscResource -Name xMPPreference -Verbose
+VERBOSE: Testing the schema.mof file.
+VERBOSE: The path to the schema file has been verified.
+VERBOSE: The schema file has passed mofcomp's syntax check.
+VERBOSE: Testing the schema file's compliance to Desired State Configuration's contracts.
+VERBOSE: Perform operation 'Get CimClass' with following parameters, ''namespaceName' = root\microsoft\windows\DesiredStateConfiguration,'className' = tmpC1EE'.
+VERBOSE: Operation 'Get CimClass' complete.
+VERBOSE: Testing the .psm1 file.
+VERBOSE: Loading module from path 'C:\Program Files\WindowsPowerShell\Modules\xDefender\DSCResources\MSFT_xMpPreference\MSFT_xMpPreference.psm1'.
+VERBOSE: Importing function 'Get-0dgnbii5.ud4TargetResource'.
+VERBOSE: Importing function 'Set-0dgnbii5.ud4TargetResource'.
+VERBOSE: Importing function 'Test-0dgnbii5.ud4TargetResource'.
+VERBOSE: Removing the imported "Test-0dgnbii5.ud4TargetResource" function.
+VERBOSE: Removing the imported "Set-0dgnbii5.ud4TargetResource" function.
+VERBOSE: Removing the imported "Get-0dgnbii5.ud4TargetResource" function.
+VERBOSE: The schema.mof and .psm1 files were both indivually correct.
+VERBOSE: Result of testing Get-TargetResource for it's mandatory properties: True.
+VERBOSE: Result of testing Set-TargetResource for no read properties: True.
+VERBOSE: Result of testing Get-TargetResource for no read properties: True.
+True
+PS C:\github> Test-xDscSchema -Path .\xDefender\DSCResources\MSFT_xMpPreference\MSFT_xMpPreference.schema.mof -Verbose
+VERBOSE: The path to the schema file has been verified.
+VERBOSE: The schema file has passed mofcomp's syntax check.
+VERBOSE: Testing the schema file's compliance to Desired State Configuration's contracts.
+VERBOSE: Perform operation 'Get CimClass' with following parameters, ''namespaceName' = root\microsoft\windows\DesiredStateConfiguration,'className' = tmp4930'.
+VERBOSE: Operation 'Get CimClass' complete.
+True
+PS C:\github> Invoke-Pester -Verbose
+Describing Text files formatting
+   Context Files encoding
+    [+] Doesn't use Unicode encoding 2.49s
+   Context Indentations
+    [+] Uses spaces for indentation, not tabs 2.09s
+Describing PowerShell DSC resource modules
+VERBOSE: Analyzing 4 files
+   Context Correctness
+    [+] all .psm1 files don't have parse errors 394ms
+   Context Output Type
+    [+] Specifies the correct output type for each *-TargetResource function 365ms
+Tests completed in 5.35s
+Passed: 4 Failed: 0 Skipped: 0 Pending: 0
+
+CurrentMatchIndex ReplacementIndex ReplacementLength CompletionMatches
+----------------- ---------------- ----------------- -----------------
+               -1                0                 5 {System.Management.Automation.CompletionResult, System.Management.Automation...
+
+
+PS C:\github> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20150618212116
+**********************
