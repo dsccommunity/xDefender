@@ -178,26 +178,21 @@ function Get-TargetResource
         $SubmitSamplesConsent
     )
 
-    $Params = $PSBoundParameters
-    $b = $Params.Remove('Name')
-    $b = $Params.Remove('Debug')
-    $b = $Params.Remove('Verbose')
-    
     $mpp = Get-MpPreference
     $MPPreference = $mpp | Get-Member -MemberType Property | % Name
 
-    foreach ($k in $MPPreference)
+    foreach ($pref in $MPPreference)
     {
-        $v = switch ($k) {
-            'RealTimeScanDirection' {Convert-ScanDirectionText $mpp.$k}
-            {$_ -in 'RemediationScheduleDay','ScanScheduleDay','SignatureScheduleDay'} {Convert-ScheduleDayText $mpp.$k}
-            'ScanParameters' {Convert-ScanParametersText $mpp.$k}
-            'MAPSReporting' {Convert-ReportingText $mpp.$k}
-            'SubmitSamplesConsent' {Convert-SubmitSamplesConsentText $mpp.$k}
-            {$_ -in 'ThreatIDDefaultAction_Actions','UnknownThreatDefaultAction','LowThreatDefaultAction','ModerateThreatDefaultAction','HighThreatDefaultAction','SevereThreatDefaultAction'} {Convert-ActionText $mpp.$k}
-            Default {$mpp.$k}
+        $value = switch ($pref) {
+            'RealTimeScanDirection' {Convert-ScanDirectionText $mpp.$pref}
+            {$_ -in 'RemediationScheduleDay','ScanScheduleDay','SignatureScheduleDay'} {Convert-ScheduleDayText $mpp.$pref}
+            'ScanParameters' {Convert-ScanParametersText $mpp.$pref}
+            'MAPSReporting' {Convert-ReportingText $mpp.$pref}
+            'SubmitSamplesConsent' {Convert-SubmitSamplesConsentText $mpp.$pref}
+            {$_ -in 'ThreatIDDefaultAction_Actions','UnknownThreatDefaultAction','LowThreatDefaultAction','ModerateThreatDefaultAction','HighThreatDefaultAction','SevereThreatDefaultAction'} {Convert-ActionText $mpp.$pref}
+            Default {$mpp.$pref}
             }
-       $return += @{$k = $v}
+       $return += @{$pref = $value}
     }
     $return += @{Name = $Name}
  
@@ -386,9 +381,9 @@ function Set-TargetResource
     )
 
     $Params = $PSBoundParameters
-    $b = $Params.Remove('Name')
-    $b = $Params.Remove('Debug')
-    $b = $Params.Remove('Verbose')
+    $output = $Params.Remove('Name')
+    $output = $Params.Remove('Debug')
+    $output = $Params.Remove('Verbose')
 
     Set-MpPreference @Params
 
@@ -575,22 +570,22 @@ function Test-TargetResource
         $SubmitSamplesConsent
     )
     $Params = $PSBoundParameters
-    $b = $Params.Remove('Debug')
-    $b = $Params.Remove('Verbose')
+    $output = $Params.Remove('Debug')
+    $output = $Params.Remove('Verbose')
     
     $Get = Get-TargetResource @Params
     $Keys = $Get.Keys | ? {$_ -in $Params.Keys}
     
     $return = $True
 
-    foreach ($k in $Keys) {
+    foreach ($key in $Keys) {
     
-        $i = $Params.$k
-        $o = $Get.$k
+        $input = $Params.$key
+        $current = $Get.$key
     
-        if ($i -ne $o){
+        if ($input -ne $current){
             $return = $False
-            Write-Verbose "$i not equal to $o for value $k"
+            Write-Verbose "$input not equal to $current for value $key"
             }
     
         }
