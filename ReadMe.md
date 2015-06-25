@@ -86,59 +86,7 @@ Versions
 
 Initial release with the following resources:
 
-- Name
-- ExclusionPath
-- ExclusionExtension
-- ExclusionProcess
-- RealTimeScanDirection
-- QuarantinePurgeItemsAfterDelay
-- RemediationScheduleDay
-- RemediationScheduleTime
-- ReportingAdditionalActionTimeOut
-- ReportingNonCriticalTimeOut
-- ReportingCriticalFailureTimeOut
-- ScanAvgCPULoadFactor
-- CheckForSignaturesBeforeRunningScan
-- ScanPurgeItemsAfterDelay
-- ScanOnlyIfIdleEnabled
-- ScanParameters
-- ScanScheduleDay
-- ScanScheduleQuickScanTime
-- ScanScheduleTime
-- SignatureFirstAuGracePeriod
-- SignatureAuGracePeriod
-- SignatureDefinitionUpdateFileSharesSources
-- SignatureDisableUpdateOnStartupWithoutEngine
-- SignatureFallbackOrder
-- SignatureScheduleDay
-- SignatureScheduleTime
-- SignatureUpdateCatchupInterval
-- SignatureUpdateInterval
-- MAPSReporting
-- DisablePrivacyMode
-- RandomizeScheduleTaskTimes
-- DisableBehaviorMonitoring
-- DisableIntrusionPreventionSystem
-- DisableIOAVProtection
-- DisableRealtimeMonitoring
-- DisableScriptScanning
-- DisableArchiveScanning
-- DisableCatchupFullScan
-- DisableCatchupQuickScan
-- DisableEmailScanning
-- DisableRemovableDriveScanning
-- DisableRestorePoint
-- DisableScanningMappedNetworkDrivesForFullScan
-- DisableScanningNetworkFiles
-- UILockdown
-- ThreatIDDefaultAction_Ids
-- ThreatIDDefaultAction_Actions
-- UnknownThreatDefaultAction
-- LowThreatDefaultAction
-- ModerateThreatDefaultAction
-- HighThreatDefaultAction
-- SevereThreatDefaultAction
-- SubmitSamplesConsent
+- xMPPreference
 
 Examples
 --------
