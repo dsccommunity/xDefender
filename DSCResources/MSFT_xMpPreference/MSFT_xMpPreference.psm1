@@ -123,6 +123,9 @@ function Get-TargetResource
         $DisableArchiveScanning,
 
         [System.Boolean]
+        $DisableAutoExclusions,
+
+        [System.Boolean]
         $DisableCatchupFullScan,
 
         [System.Boolean]
@@ -179,7 +182,8 @@ function Get-TargetResource
     )
 
     $mpp = Get-MpPreference
-    $MPPreference = $mpp | Get-Member -MemberType Property | % Name
+    $exclude = 'PSComputerName','ComputerID'
+    $MPPreference = $mpp | Get-Member -MemberType Property | ? {$_.Name -notin $exclude} | % Name
 
     foreach ($pref in $MPPreference)
     {
@@ -323,6 +327,9 @@ function Set-TargetResource
 
         [System.Boolean]
         $DisableArchiveScanning,
+
+        [System.Boolean]
+        $DisableAutoExclusions,
 
         [System.Boolean]
         $DisableCatchupFullScan,
@@ -513,6 +520,9 @@ function Test-TargetResource
 
         [System.Boolean]
         $DisableArchiveScanning,
+
+        [System.Boolean]
+        $DisableAutoExclusions,
 
         [System.Boolean]
         $DisableCatchupFullScan,

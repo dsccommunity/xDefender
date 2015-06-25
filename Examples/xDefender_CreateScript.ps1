@@ -53,6 +53,7 @@ if (!(test-path (join-path $modules $modulename))) {
     $Resource.Param += New-xDscResourceProperty -Name DisableRealtimeMonitoring -Type boolean -Attribute Write -Description 'Indicates whether to use real-time protection. If you specify a value of $True or do not specify a value, Windows Defender uses real-time protection. We recommend that you enable Windows Defender to use real-time protection.'
     $Resource.Param += New-xDscResourceProperty -Name DisableScriptScanning -Type boolean -Attribute Write -Description 'Specifies whether to disable the scanning of scripts during malware scans.'
     $Resource.Param += New-xDscResourceProperty -Name DisableArchiveScanning -Type boolean -Attribute Write -Description 'Indicates whether to scan archive files, such as .zip and .cab files, for malicious and unwanted software. If you specify a value of $True or do not specify a value, Windows Defender scans archive files.'
+    $Resource.Param += New-xDscResourceProperty -Name DisableAutoExclusions -Type boolean -Attribute Write -Description 'Indicates whether to disable the Automatic Exclusions feature for the server.'
     $Resource.Param += New-xDscResourceProperty -Name DisableCatchupFullScan -Type boolean -Attribute Write -Description 'Indicates whether Windows Defender runs catch-up scans for scheduled full scans. A computer can miss a scheduled scan, usually because the computer is turned off at the scheduled time. If you specify a value of $True, after the computer misses two scheduled full scans, Windows Defender runs a catch-up scan the next time someone logs on to the computer. If you specify a value of $False or do not specify a value, the computer does not run catch-up scans for scheduled full scans.'
     $Resource.Param += New-xDscResourceProperty -Name DisableCatchupQuickScan -Type boolean -Attribute Write -Description 'Indicates whether Windows Defender runs catch-up scans for scheduled quick scans. A computer can miss a scheduled scan, usually because the computer is off at the scheduled time. If you specify a value of $True, after the computer misses two scheduled quick scans, Windows Defender runs a catch-up scan the next time someone logs onto the computer. If you specify a value of $False or do not specify a value, the computer does not run catch-up scans for scheduled quick scans. '
     $Resource.Param += New-xDscResourceProperty -Name DisableEmailScanning -Type boolean -Attribute Write -Description 'Indicates whether Windows Defender parses the mailbox and mail files, according to their specific format, in order to analyze mail bodies and attachments. Windows Defender supports several formats, including .pst, .dbx, .mbx, .mime, and .binhex. If you specify a value of $True, Windows Defender performs email scanning. If you specify a value of $False or do not specify a value, Windows Defender does not perform email scanning. '
@@ -81,17 +82,7 @@ $MD = @"
 
 The **$ModuleName** module is a part of the Windows PowerShell Desired State Configuration (DSC) Resource Kit, which is a collection of DSC Resources. $Description, with simple declarative language.
 
-**All of the resources in the DSC Resource Kit are provided AS IS, and are not supported through any Microsoft standard support program or service. The "x" in $ModuleName stands for experimental**, which means that these resources will be **fix forward** and monitored by the module owner(s).
-
-Please leave comments, feature requests, and bug reports in the Q & A tab for
-this module.
-
-If you would like to modify the **$ModuleName** module, feel free. When modifying, please update the module name, resource friendly name, and MOF class name (instructions below). As specified in the license, you may copy or modify this resource as long as they are used on the Windows Platform.
-
-For more information about Windows PowerShell Desired State Configuration, check out the blog posts on the [PowerShell Blog](http://blogs.msdn.com/b/powershell/) ([this](http://blogs.msdn.com/b/powershell/archive/2013/11/01/configuration-in-a-devops-world-windows-powershell-desired-state-configuration.aspx) is a good starting point). There are also great community resources, such as [PowerShell.org](http://powershell.org/wp/tag/dsc/), or [PowerShell Magazine](http://www.powershellmagazine.com/tag/dsc/). For more information on the DSC Resource Kit, checkout [this blog post](http://go.microsoft.com/fwlink/?LinkID=389546).
-
-Installation
-------------
+## Installation
 
 To install **$ModuleName** module
 
@@ -103,16 +94,10 @@ To confirm installation
 
 -   Run Get-DSCResource to see that the resources listed above are among the DSC Resources displayed
 
-Requirements
-------------
+## Contributing
+Please check out common DSC Resources [contributing guidelines](https://github.com/PowerShell/DscResource.Kit/blob/master/CONTRIBUTING.md).
 
-This module requires the latest version of PowerShell (v4.0, which ships in
-Windows 8.1 or Windows Server 2012R2). To easily use PowerShell 4.0 on older
-operating systems, install WMF 4.0. Please read the installation instructions
-that are present on both the download page and the release notes for WMF 4.0.
-
-Details
--------
+## Resources
 
 "@
 foreach ($r in $Resources) {
@@ -128,25 +113,6 @@ $MD += @"
 }
 }
 $MD += @"
-Renaming Requirements
----------------------
-
-When making changes to these resources, we suggest the following practice
-
-1. Update the following names by replacing MSFT with your company/community name
-and replacing the **"x" with **"c" (short for "Community") or another prefix of your
-choice
- -    Module name (ex: xModule becomes cModule)
- -    Resource folder (ex: MSFT\_xResource becomes Contoso\_xResource)
- -    Resource Name (ex: MSFT\_xResource becomes Contoso\_cResource)
- -    Resource Friendly Name (ex: xResource becomes cResource)
- -    MOF class name (ex: MSFT\_xResource becomes Contoso\_cResource)
- -    Filename for the <resource\>.schema.mof (ex: MSFT\_xResource.schema.mof becomes Contoso\_cResource.schema.mof)
-
-2. Update module and metadata information in the module manifest  
-3. Update any configuration that use these resources
-
-We reserve resource and module names without prefixes ("x" or "c") for future use (e.g. "MSFT_Resource"). If the next version of Windows Server ships with a "WindowsEventForwarding" resource, we don't want to break any configurations that use any community modifications. Please keep a prefix such as "c" on all community modifications.
 
 Versions
 --------
@@ -155,18 +121,13 @@ Versions
 
 Initial release with the following resources:
 
-"@
 foreach ($r in $Resources) {
-    foreach ($p in $r.Param) {
 $MD += @"
+ - $($r.Name)
 
-- $($p.Name)
 "@
-    }
-}
-$MD += @'
 
-
+@'
 Examples
 --------
 
@@ -188,9 +149,6 @@ Examples
     Defender -OutputPath 'c:\DSC_Defender\'
     Start-DscConfiguration -Wait -Force -Path 'c:\DSC_Defender\' -ComputerName localhost -Verbose
 ```
-
-## Contributing
-Please check out common DSC Resources [contributing guidelines](https://github.com/PowerShell/DscResource.Kit/blob/master/CONTRIBUTING.md).
 '@
 $MD | Out-File "$moduleFolder\ReadMe.md"
 
