@@ -1,4 +1,4 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/XXXXXX/branch/master?svg=true)](https://ci.appveyor.com/project/PowerShell/xdefender/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/7vombkhs1bn1c4br/branch/master?svg=true)](https://ci.appveyor.com/project/PowerShell/xdefender/branch/master)
 
 # xDefender
 
