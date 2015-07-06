@@ -1,3 +1,8 @@
+<#
+    .SYNOPSIS Get state of the resource
+    .EXAMPLE
+        Get-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine
+#>
 function Get-TargetResource
 {
     [CmdletBinding()]
@@ -201,10 +206,13 @@ function Get-TargetResource
     $return += @{Name = $Name}
  
     $return
-
- # Get-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine
 }
 
+<#
+    .SYNOPSIS Set state of the resource
+    .EXAMPLE
+		Set-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine
+#>
 function Set-TargetResource
 {
     [CmdletBinding()]
@@ -393,10 +401,13 @@ function Set-TargetResource
     $output = $Params.Remove('Verbose')
 
     Set-MpPreference @Params
-
- # Set-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine
 }
 
+<#
+    .SYNOPSIS Test state of the resource
+    .EXAMPLE
+		Test-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine -Verbose
+#>
 function Test-TargetResource
 {
     [CmdletBinding()]
@@ -601,8 +612,6 @@ function Test-TargetResource
         }
 
     $return
-
- # Test-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine -Verbose
 }
 
 Export-ModuleMember -Function *-TargetResource
