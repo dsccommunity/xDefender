@@ -211,7 +211,7 @@ function Get-TargetResource
 <#
     .SYNOPSIS Set state of the resource
     .EXAMPLE
-		Set-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine
+        Set-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine
 #>
 function Set-TargetResource
 {
@@ -406,7 +406,7 @@ function Set-TargetResource
 <#
     .SYNOPSIS Test state of the resource
     .EXAMPLE
-		Test-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine -Verbose
+        Test-TargetResource -Name DefenderPreferences -HighThreatDefaultAction Quarantine -Verbose
 #>
 function Test-TargetResource
 {
