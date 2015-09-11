@@ -83,11 +83,15 @@ Resources
 Versions
 --------
 
-**0.1.0.0**
+### 0.2.0.0
+
+* Integrated AppVeyor changes
+
+### 0.1.0.0
 
 Initial release with the following resources:
 
-- xMPPreference
+* xMPPreference
 
 Examples
 --------
