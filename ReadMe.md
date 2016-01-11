@@ -2,6 +2,10 @@
 
 # xDefender
 
+**NOTICE - THIS MODULE HAS BEEN DEPRECATED IN FAVOR OF THE WINDOWSDEFENDER DSC MODULE**
+
+[https://www.powershellgallery.com/packages/WindowsDefender/](https://www.powershellgallery.com/packages/WindowsDefender/)
+
 The **xDefender** module is a part of the Windows PowerShell Desired State Configuration (DSC) Resource Kit, which is a collection of DSC Resources. The xDefender allows you to configure Windows Defender preferences, with simple declarative language.
 
 Installation
