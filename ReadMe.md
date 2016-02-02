@@ -84,8 +84,9 @@ Resources
 - **SevereThreatDefaultAction**: Specifies which automatic remediation action to take for a severe level threat.
 - **SubmitSamplesConsent**: Specifies how Windows Defender checks for user consent for certain samples. If consent has previously been granted, Windows Defender submits the samples. Otherwise, if the MAPSReporting parameter does not have a value of Disabled, Windows Defender prompts the user for consent.
 
-Versions
---------
+## Versions
+
+### Unreleased
 
 ### 0.2.0.0
 
