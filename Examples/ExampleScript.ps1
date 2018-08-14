@@ -8,7 +8,7 @@ configuration Defender
         Name = 'MyPreferences1'
         CheckForSignaturesBeforeRunningScan = $True
         HighThreatDefaultAction = 'Clean'
-        }   
+        }
     }
 }
 
