@@ -12,9 +12,9 @@ if (!(test-path (join-path $modules $modulename))) {
                 ClassVersion = '0.1.0.0'
                 Path = $modules
                 }
-    
+
     $Resources = @()
-    
+
     $Resource = @{Name = 'xMpPreference'; Param = @()}
     $Resource.Param += New-xDscResourceProperty -Name Name -Type String -Attribute Key -Description 'Provide the text string to uniquely identify this group of settings'
     $Resource.Param += New-xDscResourceProperty -Name ExclusionPath -Type String[] -Attribute Write -Description 'Specifies an array of file paths to exclude from scheduled and real-time scanning. You can specify a folder to exclude all the files under the folder.'
@@ -25,7 +25,7 @@ if (!(test-path (join-path $modules $modulename))) {
     $Resource.Param += New-xDscResourceProperty -Name RemediationScheduleDay -Type String -Attribute Write -ValidateSet 'Everyday','Never','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' -Description 'Specifies the day of the week on which to perform a scheduled full scan in order to complete remediation. Alternatively, specify everyday for this full scan or never. The default value is Never. If you specify a value of Never or do not specify a value, Windows Defender performs a scheduled full scan to complete remediation by using a default frequency.'
     $Resource.Param += New-xDscResourceProperty -Name RemediationScheduleTime -Type DateTime -Attribute Write -Description 'Specifies the time of day, as the number of minutes after midnight, to perform a scheduled scan. The time refers to the local time on the computer. If you do not specify a value for this parameter, a scheduled scan runs at the default time of two hours after midnight.'
     $Resource.Param += New-xDscResourceProperty -Name ReportingAdditionalActionTimeOut -Type uint32 -Attribute Write -Description 'Specifies the number of minutes before a detection in the additional action state changes to the cleared state.'
-    $Resource.Param += New-xDscResourceProperty -Name ReportingNonCriticalTimeOut -Type uint32 -Attribute Write -Description 'Specifies the number of minutes before a detection in the non-critically failed state changes to the cleared state.'   
+    $Resource.Param += New-xDscResourceProperty -Name ReportingNonCriticalTimeOut -Type uint32 -Attribute Write -Description 'Specifies the number of minutes before a detection in the non-critically failed state changes to the cleared state.'
     $Resource.Param += New-xDscResourceProperty -Name ReportingCriticalFailureTimeOut -Type uint32 -Attribute Write -Description 'Specifies the number of minutes before a detection in the critically failed state changes to either the additional action state or the cleared state.'
     $Resource.Param += New-xDscResourceProperty -Name ScanAvgCPULoadFactor -Type uint32 -Attribute Write -Description 'Specifies the maxium percentage CPU usage for a scan. The acceptable values for this parameter are:  integers from 5 through 100, and the value 0, which disables CPU throttling. Windows Defender does not exceed the percentage of CPU usage that you specify. The default value is 50.'
     $Resource.Param += New-xDscResourceProperty -Name CheckForSignaturesBeforeRunningScan -Type boolean -Attribute Write -Description 'Indicates whether to check for new virus and spyware definitions before Windows Defender runs a scan. If you specify a value of $True, Windows Defender checks for new definitions. If you specify $False or do not specify a value, the scan begins with existing definitions. This value applies to scheduled scans and to scans that you start from the command line, but it does not affect scans that you start from the user interface.'
@@ -142,7 +142,7 @@ Examples
             Name = 'MyPreferences1'
             CheckForSignaturesBeforeRunningScan = $True
             HighThreatDefaultAction = 'Clean'
-            }   
+            }
         }
     }
 
@@ -183,7 +183,7 @@ SOFTWARE.
 # Generate AppVeyor file
 if (-not (Test-Path "$moduleFolder\appveyor.yml")) {
 @'
-install: 
+install:
     - cinst -y pester
     - git clone https://github.com/PowerShell/DscResource.Tests
 
@@ -194,7 +194,7 @@ test_script:
         $testResultsFile = ".\TestsResults.xml"
         $res = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru
         (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
-        if ($res.FailedCount -gt 0) { 
+        if ($res.FailedCount -gt 0) {
             throw "$($res.FailedCount) tests failed."
         }
 on_finish:
